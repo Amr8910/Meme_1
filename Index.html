@@ -1,1 +1,58 @@
-test page
+<!doctype html>
+
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>متابعة سعر BTC - TradingView</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: Arial, sans-serif;
+    }
+    #tv-chart {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <!-- TradingView Advanced Chart Widget -->
+  <div id="tv-chart"></div>  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script type="text/javascript">
+  new TradingView.widget({
+    "width": "100%",
+    "height": "100%",
+    "symbol": "BINANCE:BTCUSDT",
+    "interval": "D",
+    "timezone": "Africa/Cairo",
+    "theme": "light",
+    "style": "1",
+    "locale": "ar",
+    "toolbar_bg": "#0f172a",
+
+    /* خصائص مهمة */
+    "enable_publishing": false,       // منع نشر الأفكار
+    "allow_symbol_change": true,      // تغيير الرمز
+    "save_image": true,               // السماح بحفظ صورة من الشارت
+    "hide_side_toolbar": false,       // إظهار شريط الأدوات على اليسار
+    "hide_top_toolbar": false,        // إظهار شريط الأدوات العلوي
+    "details": true,                  // إظهار تفاصيل الرمز (القيمة السوقية، حجم التداول…)
+    "calendar": true,                 // إظهار الأجندة الاقتصادية
+    "studies": [                      // مؤشرات افتراضية (يمكنك تعديلها أو إضافة غيرها)
+      //"RSI@tv-basicstudies",
+      //"MACD@tv-basicstudies",
+    //"Volume@tv-basicstudies"
+    ],
+    "show_popup_button": true,        // زر لتكبير الشارت في نافذة منبثقة
+    "popup_width": "1000",
+    "popup_height": "650",
+    
+    "container_id": "tv-chart"
+  });
+</script></body>
+</html>
