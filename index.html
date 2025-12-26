@@ -19,10 +19,26 @@
             background: #0a0a0a;
             color: #ffffff;
             overflow-x: hidden;
+            width: 100%;
         }
 
         html {
             scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* إصلاح الخط الأسود على اليمين */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 9999;
+            pointer-events: none;
         }
 
         /* تغيير كلمة DAMNCOIN لـ Damncoin في الأنماط */
@@ -63,12 +79,24 @@
             color: #76D976 !important;
         }
 
-        /* Navigation Styles - إخفاء navbar في الهواتف */
+        /* Navigation Styles - إصلاح الهيدر للهواتف */
         .navbar {
             background: rgba(10, 10, 10, 0.98);
             backdrop-filter: blur(20px);
             border-bottom: 2px solid rgba(139, 92, 246, 0.2);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .nav-link {
@@ -100,10 +128,10 @@
             width: 80%;
         }
 
-        /* تحسين همبرجر مينو احترافي */
+        /* همبرجر مينو محسّن مع علامة X */
         .hamburger-menu {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             position: relative;
             cursor: pointer;
             display: flex;
@@ -111,35 +139,38 @@
             justify-content: center;
             align-items: center;
             z-index: 1001;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         .hamburger-menu span {
             display: block;
-            width: 25px;
-            height: 3px;
+            width: 24px;
+            height: 2px;
             background: #90EE90;
-            border-radius: 3px;
-            transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
             position: absolute;
         }
 
         .hamburger-menu span:nth-child(1) {
-            top: 8px;
+            top: 13px;
             transform-origin: center;
         }
 
         .hamburger-menu span:nth-child(2) {
-            top: 16px;
+            top: 19px;
         }
 
         .hamburger-menu span:nth-child(3) {
-            top: 24px;
+            top: 25px;
             transform-origin: center;
         }
 
         .hamburger-menu.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-            top: 16px;
+            transform: rotate(45deg) translate(5px, 5px);
+            top: 19px;
             background: #ec4899;
         }
 
@@ -149,23 +180,23 @@
         }
 
         .hamburger-menu.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-            top: 16px;
+            transform: rotate(-45deg) translate(7px, -7px);
+            top: 19px;
             background: #ec4899;
         }
 
-        /* Mobile Menu */
+        /* Mobile Menu محسّن */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
             width: 100%;
-            max-width: 380px;
+            max-width: 320px;
             height: 100vh;
             background: rgba(15, 15, 25, 0.98);
             backdrop-filter: blur(25px);
-            transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            z-index: 999;
             border-left: 2px solid rgba(139, 92, 246, 0.4);
             box-shadow: -15px 0 40px rgba(0, 0, 0, 0.7);
             padding-top: 100px;
@@ -185,8 +216,8 @@
             background: rgba(0, 0, 0, 0.9);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
-            z-index: 999;
+            transition: all 0.3s ease;
+            z-index: 998;
         }
 
         .mobile-overlay.active {
@@ -196,35 +227,19 @@
 
         .mobile-link {
             display: block;
-            padding: 20px 32px;
+            padding: 20px 30px;
             color: #90EE90 !important;
             font-weight: 600;
             font-size: 18px;
             border-bottom: 1px solid rgba(139, 92, 246, 0.15);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-        }
-
-        .mobile-link:before {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .mobile-link:hover:before {
-            left: 100%;
         }
 
         .mobile-link:hover {
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(139, 92, 246, 0.1);
             color: #76D976 !important;
-            padding-left: 40px;
+            padding-left: 35px;
         }
 
         /* Hero Section */
@@ -245,35 +260,28 @@
                          0 0 40px rgba(139, 92, 246, 0.5);
         }
 
-        /* Cards مع تباعد محسن */
+        /* Cards مع تباعد محسن وترتيب صحيح */
         .info-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 24px;
-            padding: 36px;
-            transition: all 0.4s ease;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
             height: 100%;
             text-align: center;
-            margin-bottom: 30px;
         }
 
         .info-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-8px);
             border-color: rgba(139, 92, 246, 0.6);
-            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25),
-                        0 0 0 1px rgba(139, 92, 246, 0.1);
-        }
-
-        /* تباعد محسن بين البطاقات */
-        .card-spacing {
-            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
         }
 
         /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            padding: 18px 44px;
+            padding: 16px 40px;
             border-radius: 50px;
             font-weight: 700;
             transition: all 0.3s ease;
@@ -284,37 +292,18 @@
             font-size: 18px;
             box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
             color: white !important;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-primary:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-            z-index: -1;
-        }
-
-        .btn-primary:hover:before {
-            left: 100%;
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.6);
             color: white !important;
         }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(139, 92, 246, 0.5);
-            padding: 16px 44px;
+            padding: 14px 40px;
             border-radius: 50px;
             font-weight: 700;
             transition: all 0.3s ease;
@@ -322,124 +311,95 @@
             text-decoration: none;
             font-size: 18px;
             color: white !important;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-secondary:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
-            transition: left 0.6s ease;
-            z-index: -1;
-        }
-
-        .btn-secondary:hover:before {
-            left: 100%;
         }
 
         .btn-secondary:hover {
             background: rgba(139, 92, 246, 0.2);
             border-color: rgba(139, 92, 246, 0.8);
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             color: white !important;
         }
 
         /* Wojak Container */
         .wojak-placeholder {
-            min-height: 420px;
+            min-height: 350px;
             background: rgba(139, 92, 246, 0.05);
             border: 3px dashed rgba(139, 92, 246, 0.3);
-            border-radius: 24px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            padding: 50px;
-            margin: 0 auto 40px;
+            padding: 40px;
+            width: 100%;
         }
 
-        /* Contract Box - نقل إلى أعلى */
+        /* Contract Box */
         .contract-container {
             background: rgba(139, 92, 246, 0.12);
             border: 2px solid rgba(139, 92, 246, 0.4);
-            border-radius: 24px;
-            padding: 44px;
+            border-radius: 20px;
+            padding: 40px;
             text-align: center;
-            max-width: 900px;
-            margin: 50px auto 60px;
+            margin: 40px auto;
             backdrop-filter: blur(10px);
-            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
             transition: all 0.3s ease;
         }
 
         .contract-container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25);
-            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.25);
         }
 
         .contract-address {
             background: rgba(0, 0, 0, 0.7);
-            padding: 24px;
-            border-radius: 16px;
+            padding: 20px;
+            border-radius: 12px;
             word-break: break-all;
             font-family: 'Courier New', monospace;
             font-size: 16px;
-            line-height: 1.8;
-            margin: 0 auto;
-            max-width: 100%;
+            line-height: 1.6;
             border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
         .copy-btn {
             background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
             color: white;
-            padding: 16px 38px;
-            border-radius: 12px;
+            padding: 14px 32px;
+            border-radius: 10px;
             border: none;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 16px;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
         }
 
         .copy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
-        }
-
-        .copy-btn:active {
-            transform: scale(0.98);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
         /* Stats */
         .stat-box {
             background: rgba(139, 92, 246, 0.1);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 24px;
-            padding: 46px 34px;
+            border-radius: 20px;
+            padding: 40px 30px;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             height: 100%;
-            margin-bottom: 30px;
         }
 
         .stat-box:hover {
-            transform: translateY(-10px) scale(1.03);
+            transform: translateY(-8px);
             border-color: rgba(139, 92, 246, 0.6);
-            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
         }
 
         .stat-number {
-            font-size: 52px;
+            font-size: 48px;
             font-weight: 900;
             background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
             -webkit-background-clip: text;
@@ -449,17 +409,19 @@
             margin: 15px 0;
         }
 
-        /* Sections مع تباعد محسن */
+        /* Sections */
         section {
-            padding: 120px 20px;
+            padding: 100px 20px;
             text-align: center;
+            width: 100%;
+            position: relative;
         }
 
         .section-title {
-            font-size: 52px;
+            font-size: 48px;
             font-weight: 900;
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             line-height: 1.2;
         }
 
@@ -467,58 +429,83 @@
         .story-box {
             background: rgba(139, 92, 246, 0.12);
             border: 2px solid rgba(139, 92, 246, 0.4);
-            border-radius: 24px;
-            padding: 56px;
-            line-height: 1.9;
+            border-radius: 20px;
+            padding: 40px;
+            line-height: 1.8;
             text-align: center;
-            margin: 0 auto 50px;
-            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         /* Footer */
         footer {
             background: rgba(10, 10, 10, 0.98);
             border-top: 2px solid rgba(139, 92, 246, 0.2);
-            padding: 100px 20px 50px;
+            padding: 80px 20px 40px;
             text-align: center;
+            width: 100%;
         }
 
         /* تحسين التباعد والتوسيط */
-        .centered-container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             width: 100%;
         }
 
-        /* Responsive Design */
+        /* إصلاح مشكلة الترتيب في قسم About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+            
+            .about-image {
+                order: 1;
+            }
+            
+            .about-cards {
+                order: 2;
+            }
+        }
+
+        /* Responsive Design محسّن */
         @media (max-width: 1024px) {
             .section-title {
-                font-size: 44px;
+                font-size: 42px;
             }
             
             section {
-                padding: 100px 20px;
+                padding: 80px 20px;
             }
 
             .info-card {
-                padding: 32px;
-                margin-bottom: 25px;
+                padding: 25px;
             }
 
             .stat-box {
-                padding: 40px 28px;
-                margin-bottom: 25px;
-            }
-            
-            .story-box {
-                padding: 44px;
-                margin-bottom: 40px;
+                padding: 30px 25px;
             }
         }
 
         @media (max-width: 768px) {
-            /* إخفاء الـ navbar وإظهار الهمبرجر فقط في الهواتف */
+            /* إصلاح الهيدر للهواتف */
+            .navbar {
+                padding: 0 15px;
+            }
+            
+            .nav-container {
+                padding: 0 15px;
+            }
+            
             .desktop-nav {
                 display: none !important;
             }
@@ -528,81 +515,75 @@
             }
             
             .section-title {
-                font-size: 40px;
-                margin-bottom: 70px;
+                font-size: 36px;
+                margin-bottom: 50px;
             }
             
             section {
-                padding: 90px 16px;
+                padding: 70px 15px;
             }
             
             .stat-number {
-                font-size: 46px;
+                font-size: 42px;
             }
 
             .info-card {
-                padding: 28px;
-                margin-bottom: 25px;
+                padding: 25px 20px;
+                margin-bottom: 20px;
             }
 
             .story-box {
-                padding: 36px;
-                margin-bottom: 40px;
+                padding: 30px 20px;
             }
 
             .btn-primary, .btn-secondary {
-                padding: 16px 36px;
-                font-size: 17px;
+                padding: 14px 30px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
             }
 
             .wojak-placeholder {
-                min-height: 350px;
-                padding: 40px;
-                margin-bottom: 35px;
+                min-height: 300px;
+                padding: 30px 20px;
+                margin: 20px 0;
             }
 
             .contract-container {
-                padding: 36px;
-                margin: 40px auto 50px;
+                padding: 30px 20px;
+                margin: 30px auto;
             }
             
             .hamburger-menu {
                 display: flex;
             }
+            
+            .mobile-menu {
+                max-width: 280px;
+            }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 480px) {
             .section-title {
-                font-size: 36px;
-                margin-bottom: 60px;
+                font-size: 32px;
+                margin-bottom: 40px;
             }
 
             .stat-number {
-                font-size: 42px;
+                font-size: 38px;
             }
 
             .contract-address {
                 font-size: 14px;
-                padding: 20px;
+                padding: 15px;
             }
 
             .story-box {
-                padding: 30px;
-                margin-bottom: 35px;
+                padding: 25px 15px;
             }
             
             .logo-text {
                 font-size: 24px;
-            }
-            
-            .mobile-menu {
-                max-width: 100%;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .mobile-nav-toggle {
-                display: none !important;
             }
         }
     </style>
@@ -612,21 +593,21 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <!-- Navigation -->
-    <nav class="navbar fixed w-full top-0 z-50">
-        <div class="centered-container">
-            <div class="flex justify-between items-center h-24">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex items-center">
                     <span class="logo-text">Damncoin</span>
                 </div>
                 
-                <!-- Desktop Menu - مخفي في الهواتف -->
-                <div class="desktop-nav hidden lg:flex items-center space-x-3">
+                <!-- Desktop Menu - ظاهر فقط في شاشات كبيرة -->
+                <div class="desktop-nav lg:flex items-center space-x-4 hidden">
                     <a href="#about" class="nav-link">About</a>
                     <a href="#story" class="nav-link">Story</a>
                     <a href="#tokenomics" class="nav-link">Tokenomics</a>
                     <a href="#community" class="nav-link">Community</a>
-                    <a href="#buy" class="btn-primary ml-6">Buy Now</a>
+                    <a href="#buy" class="btn-primary ml-4">Buy Now</a>
                 </div>
 
                 <!-- Hamburger Menu Button - ظاهر فقط في الهواتف -->
@@ -643,9 +624,14 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <div class="px-8">
-            <div class="text-center mb-16 pt-8">
-                <span class="logo-text text-3xl">Damncoin</span>
+        <div class="px-6">
+            <div class="flex justify-between items-center mb-12 pt-8 px-4">
+                <span class="logo-text text-2xl">Damncoin</span>
+                <div class="hamburger-menu active" id="closeMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
             <div class="flex flex-col">
                 <a href="#about" class="mobile-link">About</a>
@@ -653,89 +639,91 @@
                 <a href="#tokenomics" class="mobile-link">Tokenomics</a>
                 <a href="#community" class="mobile-link">Community</a>
                 <a href="#buy" class="mobile-link">How to Buy</a>
-                <div class="px-6 pt-10 pb-6">
-                    <a href="#buy" class="btn-primary block text-center w-full py-5 text-lg">Buy $DMAN</a>
+                <div class="px-4 pt-8 pb-6">
+                    <a href="#buy" class="btn-primary block text-center w-full py-4">Buy $DMAN</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0 hero-gradient"></div>
         <div class="absolute inset-0 bg-black opacity-60"></div>
         
-        <div class="relative z-10 centered-container text-center">
-            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black mb-6 sm:mb-8 glow-text leading-tight">
+        <div class="relative z-10 container text-center">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 glow-text leading-tight">
                 DAAAAAAMN!
             </h1>
-            <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-purple-300">Welcome to Damncoin</p>
-            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-10 sm:mb-16 max-w-4xl mx-auto text-gray-300 px-4">
+            <p class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-purple-300">Welcome to Damncoin</p>
+            <p class="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-300 px-4">
                 The voice of every crypto trader waiting for alt season
             </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center px-4">
-                <a href="#buy" class="btn-primary w-full sm:w-auto text-center px-12">Buy $DMAN</a>
-                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-secondary w-full sm:w-auto text-center px-12">Join Telegram</a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
+                <a href="#buy" class="btn-primary w-full sm:w-auto text-center">Buy $DMAN</a>
+                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-secondary w-full sm:w-auto text-center">Join Telegram</a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about">
-        <div class="centered-container">
+        <div class="container">
             <h2 class="section-title glow-text">About Damncoin</h2>
             
-            <div class="grid lg:grid-cols-2 gap-14 lg:gap-18 items-center">
-                <!-- Wojak Image Placeholder -->
-                <div class="wojak-placeholder order-2 lg:order-1 max-w-lg mx-auto">
-                    <div class="text-center">
-                        <svg class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        <p class="text-xl sm:text-2xl font-bold text-purple-400 mb-4">Wojak Image Here</p>
-                        <p class="text-base sm:text-lg text-gray-400">Replace with your Wojak image</p>
-                        <p class="text-sm sm:text-base text-gray-500 mt-4">Recommended: 600x600px PNG</p>
-                    </div>
-                </div>
-
+            <div class="about-grid">
                 <!-- Info Cards -->
-                <div class="space-y-10 lg:space-y-12 order-1 lg:order-2">
+                <div class="about-cards space-y-6">
                     <div class="info-card">
-                        <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-purple-400">$DMAN Token</h3>
-                        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                        <h3 class="text-2xl font-bold mb-4 text-purple-400">$DMAN Token</h3>
+                        <p class="text-gray-300 leading-relaxed">
                             Damncoin is the ultimate meme coin for crypto traders who are still waiting for alt season. 
                             Born from frustration, fueled by hope, and powered by the community.
                         </p>
                     </div>
 
                     <div class="info-card">
-                        <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-pink-400">100% Community Driven</h3>
-                        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                        <h3 class="text-2xl font-bold mb-4 text-pink-400">100% Community Driven</h3>
+                        <p class="text-gray-300 leading-relaxed">
                             Zero developer allocation. The community leads, supports, and controls Damncoin. 
                             This is YOUR coin, built by traders, for traders.
                         </p>
                     </div>
 
                     <div class="info-card">
-                        <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-blue-400">Solana Network</h3>
-                        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                        <h3 class="text-2xl font-bold mb-4 text-blue-400">Solana Network</h3>
+                        <p class="text-gray-300 leading-relaxed">
                             Launched on pump.fun, built on Solana for lightning-fast transactions and minimal fees.
                         </p>
+                    </div>
+                </div>
+
+                <!-- Wojak Image Placeholder -->
+                <div class="about-image">
+                    <div class="wojak-placeholder">
+                        <div class="text-center">
+                            <svg class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            <p class="text-xl font-bold text-purple-400 mb-2">Wojak Image Here</p>
+                            <p class="text-gray-400">Replace with your Wojak image</p>
+                            <p class="text-gray-500 text-sm mt-2">Recommended: 600x600px PNG</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Contract Address - تم نقله إلى هنا -->
-            <div class="max-w-5xl mx-auto">
+            <div class="mt-16">
                 <div class="contract-container">
-                    <h3 class="text-2xl sm:text-3xl font-bold mb-8 text-center text-purple-400">Contract Address</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-center text-purple-400">Contract Address</h3>
                     <div class="contract-address">
                         <code id="contractAddress">YOUR_CONTRACT_ADDRESS_HERE</code>
                     </div>
                     <div class="text-center">
                         <button onclick="copyAddress()" class="copy-btn">Copy Address</button>
                     </div>
-                    <p class="text-center text-sm sm:text-base text-gray-400 mt-8">Always verify the contract address before buying</p>
+                    <p class="text-center text-gray-400 mt-6">Always verify the contract address before buying</p>
                 </div>
             </div>
         </div>
@@ -743,29 +731,29 @@
 
     <!-- Story Section -->
     <section id="story" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 100%);">
-        <div class="centered-container max-w-6xl">
+        <div class="container">
             <h2 class="section-title glow-text">The Wojak Story</h2>
             
             <div class="story-box">
-                <p class="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed">
+                <p class="text-lg mb-6 leading-relaxed">
                     Meet Wojak, an altcoin trader and investor who put everything into crypto. He's been waiting for alt season 
                     to make his first million dollars after failing in the previous cycle.
                 </p>
                 
-                <p class="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed">
+                <p class="text-lg mb-6 leading-relaxed">
                     Back then, Wojak lost his money in the Terra Luna and UST collapse at the end of the last bull run. 
                     Now, unfortunately, alt season is delayed, the market keeps bleeding, and Wojak's portfolio is down 95%.
                 </p>
                 
-                <p class="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed">
+                <p class="text-lg mb-8 leading-relaxed">
                     He's still waiting for alt season. And all Wojak can say is...
                 </p>
                 
-                <p class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-center text-purple-400 glow-text my-12">
+                <p class="text-4xl sm:text-5xl md:text-6xl font-black text-center text-purple-400 glow-text my-10">
                     DAAAAAAMN!
                 </p>
                 
-                <p class="text-base sm:text-lg lg:text-xl leading-relaxed">
+                <p class="text-lg leading-relaxed">
                     Wojak's story mirrors most traders and investors who lost most of their money waiting for alt season. 
                     That's why "DAMN" is the motto of this era.
                 </p>
@@ -775,29 +763,29 @@
 
     <!-- Tokenomics Section -->
     <section id="tokenomics">
-        <div class="centered-container">
+        <div class="container">
             <h2 class="section-title glow-text">Tokenomics</h2>
             
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-14 mb-14 sm:mb-18">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 <div class="stat-box">
-                    <div class="text-5xl sm:text-6xl mb-6">🪙</div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-purple-400">Total Supply</h3>
+                    <div class="text-5xl mb-4">🪙</div>
+                    <h3 class="text-xl font-bold mb-4 text-purple-400">Total Supply</h3>
                     <p class="stat-number">1B</p>
-                    <p class="text-base sm:text-lg text-gray-400 mt-4">DMAN Tokens</p>
+                    <p class="text-gray-400 mt-2">DMAN Tokens</p>
                 </div>
 
                 <div class="stat-box">
-                    <div class="text-5xl sm:text-6xl mb-6">🎯</div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-pink-400">Dev Allocation</h3>
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-4 text-pink-400">Dev Allocation</h3>
                     <p class="stat-number">0%</p>
-                    <p class="text-base sm:text-lg text-gray-400 mt-4">Fair Launch</p>
+                    <p class="text-gray-400 mt-2">Fair Launch</p>
                 </div>
 
                 <div class="stat-box sm:col-span-2 lg:col-span-1">
-                    <div class="text-5xl sm:text-6xl mb-6">🌐</div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-blue-400">Network</h3>
-                    <p class="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Solana</p>
-                    <p class="text-base sm:text-lg text-gray-400 mt-4">pump.fun</p>
+                    <div class="text-5xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Network</h3>
+                    <p class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Solana</p>
+                    <p class="text-gray-400 mt-2">pump.fun</p>
                 </div>
             </div>
         </div>
@@ -805,19 +793,19 @@
 
     <!-- Community Section -->
     <section id="community" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 100%);">
-        <div class="centered-container max-w-6xl">
+        <div class="container">
             <h2 class="section-title glow-text">Join The Community</h2>
             
-            <p class="text-lg sm:text-xl lg:text-2xl text-center text-gray-300 mb-14 sm:mb-18 leading-relaxed max-w-3xl mx-auto">
+            <p class="text-xl text-center text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
                 Damncoin is built by the community, for the community. Join thousands of traders who share 
                 your pain and are waiting for alt season together.
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 justify-center max-w-2xl mx-auto">
-                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-primary text-center py-6 px-14 w-full sm:w-auto text-lg">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-primary text-center py-4 px-8">
                     📱 Join Telegram
                 </a>
-                <a href="#buy" class="btn-secondary text-center py-6 px-14 w-full sm:w-auto text-lg">
+                <a href="#buy" class="btn-secondary text-center py-4 px-8">
                     💰 Buy $DMAN
                 </a>
             </div>
@@ -826,31 +814,31 @@
 
     <!-- Buy Section -->
     <section id="buy">
-        <div class="centered-container">
+        <div class="container">
             <h2 class="section-title glow-text">How To Buy</h2>
             
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-14 mb-14 sm:mb-18">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 <div class="info-card">
-                    <div class="text-5xl sm:text-6xl font-black text-purple-400 mb-6">1</div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Get a Wallet</h3>
-                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">Download Phantom or any Solana-compatible wallet</p>
+                    <div class="text-5xl font-black text-purple-400 mb-4">1</div>
+                    <h3 class="text-xl font-bold mb-4">Get a Wallet</h3>
+                    <p class="text-gray-300 leading-relaxed">Download Phantom or any Solana-compatible wallet</p>
                 </div>
 
                 <div class="info-card">
-                    <div class="text-5xl sm:text-6xl font-black text-pink-400 mb-6">2</div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Buy SOL</h3>
-                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">Purchase Solana from an exchange and send to your wallet</p>
+                    <div class="text-5xl font-black text-pink-400 mb-4">2</div>
+                    <h3 class="text-xl font-bold mb-4">Buy SOL</h3>
+                    <p class="text-gray-300 leading-relaxed">Purchase Solana from an exchange and send to your wallet</p>
                 </div>
 
                 <div class="info-card sm:col-span-2 lg:col-span-1">
-                    <div class="text-5xl sm:text-6xl font-black text-blue-400 mb-6">3</div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Swap for DMAN</h3>
-                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">Use pump.fun to swap SOL for Damncoin</p>
+                    <div class="text-5xl font-black text-blue-400 mb-4">3</div>
+                    <h3 class="text-xl font-bold mb-4">Swap for DMAN</h3>
+                    <p class="text-gray-300 leading-relaxed">Use pump.fun to swap SOL for Damncoin</p>
                 </div>
             </div>
 
             <div class="text-center">
-                <a href="https://pump.fun" target="_blank" class="btn-primary py-6 px-18 text-lg">
+                <a href="https://pump.fun" target="_blank" class="btn-primary py-4 px-12">
                     Buy on pump.fun 🚀
                 </a>
             </div>
@@ -859,36 +847,36 @@
 
     <!-- Footer -->
     <footer>
-        <div class="centered-container">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-14 mb-14">
+        <div class="container">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="text-2xl sm:text-3xl font-bold text-purple-400 mb-6">Damncoin</h3>
-                    <p class="text-base sm:text-lg text-gray-400 leading-relaxed">The voice of every trader waiting for alt season</p>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">Damncoin</h3>
+                    <p class="text-gray-400 leading-relaxed">The voice of every trader waiting for alt season</p>
                 </div>
 
                 <div>
-                    <h4 class="text-lg sm:text-xl font-bold mb-6 text-purple-400">Quick Links</h4>
-                    <div class="space-y-5">
-                        <a href="#about" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">About</a>
-                        <a href="#story" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Story</a>
-                        <a href="#tokenomics" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Tokenomics</a>
-                        <a href="#community" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Community</a>
+                    <h4 class="text-lg font-bold mb-4 text-purple-400">Quick Links</h4>
+                    <div class="space-y-3">
+                        <a href="#about" class="block text-gray-400 hover:text-green-300 transition">About</a>
+                        <a href="#story" class="block text-gray-400 hover:text-green-300 transition">Story</a>
+                        <a href="#tokenomics" class="block text-gray-400 hover:text-green-300 transition">Tokenomics</a>
+                        <a href="#community" class="block text-gray-400 hover:text-green-300 transition">Community</a>
                     </div>
                 </div>
 
                 <div class="sm:col-span-2 lg:col-span-1">
-                    <h4 class="text-lg sm:text-xl font-bold mb-6 text-purple-400">Connect</h4>
-                    <div class="space-y-5">
-                        <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Telegram</a>
-                        <a href="https://pump.fun" target="_blank" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">pump.fun</a>
+                    <h4 class="text-lg font-bold mb-4 text-purple-400">Connect</h4>
+                    <div class="space-y-3">
+                        <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="block text-gray-400 hover:text-green-300 transition">Telegram</a>
+                        <a href="https://pump.fun" target="_blank" class="block text-gray-400 hover:text-green-300 transition">pump.fun</a>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-10 border-t border-gray-800 text-center">
-                <p class="text-gray-500 text-sm sm:text-base">© 2025 Damncoin. All rights reserved.</p>
-                <p class="text-gray-600 text-xs sm:text-sm mt-4">All rights reserved idamn.fun 2025</p>
-                <p class="text-gray-600 text-xs sm:text-sm mt-2">This is a meme coin. Invest at your own risk.</p>
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500">© 2025 Damncoin. All rights reserved.</p>
+                <p class="text-gray-600 text-sm mt-2">All rights reserved idamn.fun 2025</p>
+                <p class="text-gray-600 text-sm mt-1">This is a meme coin. Invest at your own risk.</p>
             </div>
         </div>
     </footer>
@@ -896,6 +884,7 @@
     <script>
         // Mobile Menu Toggle
         const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const closeMenuBtn = document.getElementById('closeMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileOverlay = document.getElementById('mobileOverlay');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -904,14 +893,22 @@
             hamburgerMenu.classList.toggle('active');
             mobileMenu.classList.toggle('active');
             mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        function closeMenu() {
+            hamburgerMenu.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         hamburgerMenu.addEventListener('click', toggleMenu);
-        mobileOverlay.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileOverlay.addEventListener('click', closeMenu);
 
         mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
+            link.addEventListener('click', closeMenu);
         });
 
         // Contract Address Copy Function
@@ -969,12 +966,20 @@
         document.addEventListener('click', function(event) {
             const isClickInsideMenu = mobileMenu.contains(event.target);
             const isClickOnHamburger = hamburgerMenu.contains(event.target);
+            const isClickOnCloseMenu = closeMenuBtn.contains(event.target);
             const isMenuActive = mobileMenu.classList.contains('active');
             
-            if (isMenuActive && !isClickInsideMenu && !isClickOnHamburger) {
-                toggleMenu();
+            if (isMenuActive && !isClickInsideMenu && !isClickOnHamburger && !isClickOnCloseMenu) {
+                closeMenu();
             }
         });
+        
+        // Prevent body scroll when menu is open
+        document.addEventListener('touchmove', function(e) {
+            if (mobileMenu.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
