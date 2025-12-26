@@ -270,30 +270,6 @@
             margin-bottom: 40px;
         }
 
-        /* تعديل خاص لعرض الصورة */
-        .wojak-placeholder {
-            min-height: 420px;
-            background: rgba(139, 92, 246, 0.05);
-            border: 3px solid rgba(139, 92, 246, 0.3);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 20px;
-            margin: 0 auto 40px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .wojak-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 16px;
-            max-height: 380px;
-        }
-
         /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
@@ -372,6 +348,20 @@
             border-color: rgba(139, 92, 246, 0.8);
             transform: translateY(-4px);
             color: white !important;
+        }
+
+        /* Wojak Container */
+        .wojak-placeholder {
+            min-height: 420px;
+            background: rgba(139, 92, 246, 0.05);
+            border: 3px dashed rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 50px;
+            margin: 0 auto 40px;
         }
 
         /* Contract Box - نقل إلى أعلى */
@@ -476,7 +466,7 @@
         /* Story section */
         .story-box {
             background: rgba(139, 92, 246, 0.12);
-            border: 2px solid rgba(139, 92,246, 0.4);
+            border: 2px solid rgba(139, 92, 246, 0.4);
             border-radius: 24px;
             padding: 56px;
             line-height: 1.9;
@@ -525,14 +515,6 @@
                 padding: 44px;
                 margin-bottom: 40px;
             }
-            
-            .wojak-placeholder {
-                min-height: 380px;
-            }
-            
-            .wojak-placeholder img {
-                max-height: 340px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -574,13 +556,9 @@
             }
 
             .wojak-placeholder {
-                min-height: 320px;
-                padding: 15px;
+                min-height: 350px;
+                padding: 40px;
                 margin-bottom: 35px;
-            }
-            
-            .wojak-placeholder img {
-                max-height: 290px;
             }
 
             .contract-container {
@@ -619,14 +597,6 @@
             
             .mobile-menu {
                 max-width: 100%;
-            }
-            
-            .wojak-placeholder {
-                min-height: 280px;
-            }
-            
-            .wojak-placeholder img {
-                max-height: 250px;
             }
         }
         
@@ -716,13 +686,16 @@
             <h2 class="section-title glow-text">About Damncoin</h2>
             
             <div class="grid lg:grid-cols-2 gap-14 lg:gap-18 items-center">
-                <!-- Wojak Image -->
+                <!-- Wojak Image Placeholder -->
                 <div class="wojak-placeholder order-2 lg:order-1 max-w-lg mx-auto">
-                    <img 
-                        src="wojak.png" 
-                        alt="Wojak waiting for alt season" 
-                        class="wojak-image"
-                    >
+                    <div class="text-center">
+                        <svg class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <p class="text-xl sm:text-2xl font-bold text-purple-400 mb-4">Wojak Image Here</p>
+                        <p class="text-base sm:text-lg text-gray-400">Replace with your Wojak image</p>
+                        <p class="text-sm sm:text-base text-gray-500 mt-4">Recommended: 600x600px PNG</p>
+                    </div>
                 </div>
 
                 <!-- Info Cards -->
@@ -1000,18 +973,6 @@
             
             if (isMenuActive && !isClickInsideMenu && !isClickOnHamburger) {
                 toggleMenu();
-            }
-        });
-        
-        // Image fallback in case wojak.png is not found
-        document.addEventListener('DOMContentLoaded', function() {
-            const wojakImage = document.querySelector('.wojak-image');
-            if (wojakImage) {
-                wojakImage.onerror = function() {
-                    console.log('Image wojak.png not found. Please ensure the file is in the same directory as the HTML file.');
-                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWExYTJhIi8+PHRleHQgeD0iMzAwIiB5PSIzMDAiIGZvbnQtZmFtaWx5PSJQb3BwaW5zIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOGI1Y2Y2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Xb2phayBJbWFnZTxicj48dHNwYW4gZm9udC1zaXplPSIxNiI+KHBsZWFzZSBhZGQgIndvamFrLnBuZyIgZmlsZSk8L3RzcGFuPjwvdGV4dD48L3N2Zz4=';
-                    this.alt = 'Image not found - please add wojak.png file';
-                };
             }
         });
     </script>
