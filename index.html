@@ -385,8 +385,11 @@
             border-radius: 20px;
             padding: 30px;
             transition: all 0.3s ease;
-            height: 100%;
             text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .info-card:hover {
@@ -403,23 +406,27 @@
         }
 
         .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 40px;
             width: 100%;
         }
 
         @media (min-width: 992px) {
             .about-grid {
+                display: grid;
                 grid-template-columns: 1fr 1fr;
+                gap: 40px;
                 align-items: start;
             }
-            
-            .about-cards {
-                display: flex;
-                flex-direction: column;
-                gap: 30px;
-            }
+        }
+
+        /* About Cards Container */
+        .about-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
         }
 
         /* Wojak Image Container */
@@ -428,6 +435,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 992px) {
+            .wojak-image-container {
+                margin-bottom: 0;
+            }
         }
 
         .wojak-image {
@@ -895,7 +909,7 @@
             <h3 class="contract-top-title">Contract Address</h3>
             <div class="contract-top-box">
                 <div class="contract-top-address">
-                    <code id="contractTopAddress">YOUR_CONTRACT_ADDRESS_HERE</code>
+                    <code id="contractTopAddress">very soon</code>
                 </div>
                 <button onclick="copyTopAddress()" class="copy-btn">Copy Address</button>
             </div>
@@ -916,7 +930,7 @@
                 <!-- Info Cards -->
                 <div class="about-cards">
                     <div class="info-card">
-                        <h3 class="text-2xl font-bold mb-4 text-purple-400">$DMAN Token</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-purple-400">Damncoin</h3>
                         <p class="text-gray-300 leading-relaxed">
                             Damncoin is the ultimate meme coin for crypto traders who are still waiting for alt season. Born from frustration, fueled by hope, and powered by the community.
                         </p>
