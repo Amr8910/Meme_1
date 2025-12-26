@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damncoin - DMAN | The Alt Season Survivor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Logo link styling */
+        .logo-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-text:hover {
+            transform: scale(1.05);
+        }
+
+        /* تغيير لون الروابط للون الأخضر الفاتح */
+        a:not(.btn-primary):not(.btn-secondary):not(.copy-btn):not(.logo-link) {
+            color: #90EE90 !important;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:not(.btn-primary):not(.btn-secondary):not(.copy-btn):not(.logo-link):hover {
+            color: #76D976 !important;
+        }
+
+        .nav-link, .mobile-link {
+            color: #90EE90 !important;
+        }
+
+        .nav-link:hover, .mobile-link:hover {
+            color: #76D976 !important;
+        }
+
+        footer a {
+            color: #90EE90 !important;
+        }
+
+        footer a:hover {
+            color: #76D976 !important;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #90EE90 !important;
+            font-weight: 600;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .nav-link:hover {
+            color: #76D976 !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #90EE90, #76D976);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* همبرجر مينو محسّن مع علامة X */
+        .hamburger-menu {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #90EE90;
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            position: absolute;
+        }
+
+        .hamburger-menu span:nth-child(1) {
+            top: 13px;
+            transform-origin: center;
+        }
+
+        .hamburger-menu span:nth-child(2) {
+            top: 19px;
+        }
+
+        .hamburger-menu span:nth-child(3) {
+            top: 25px;
+            transform-origin: center;
+        }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            top: 19px;
+            background: #ec4899;
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+            top: 19px;
+            background: #ec4899;
+        }
+
+        /* إصلاح القائمة المتنقلة - العناصر رأسياً */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(15, 15, 25, 0.98);
+            backdrop-filter: blur(25px);
+            transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            z-index: 999;
+            border-left: 2px solid rgba(139, 92, 246, 0.4);
+            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.7);
+            padding-top: 100px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* إصلاح عرض العناصر رأسياً في القائمة المتنقلة */
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .mobile-link {
+            display: block;
+            padding: 20px 30px;
+            color: #90EE90 !important;
+            font-weight: 600;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: left;
+        }
+
+        .mobile-link:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: #76D976 !important;
+            padding-left: 35px;
+        }
+
+        /* Hero Section - إصلاح مشكلة النص الزائد */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 8s ease infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.5);
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #d8b4fe;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        /* إصلاح تنسيق الأزرار في المنتصف */
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        /* Contract Box بعد الهيدر */
+        .contract-top-section {
+            padding: 40px 20px;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .contract-top-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contract-top-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #a78bfa;
+        }
+
+        .contract-top-box {
+            background: rgba(139, 92, 246, 0.15);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contract-top-address {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            margin-bottom: 15px;
+        }
+
+        /* Cards مع تباعد محسن */
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        /* إصلاح قسم About - شبكة جديدة */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+            
+            .about-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        /* Wojak Image Container */
+        .wojak-image-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wojak-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            color: white !important;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.6);
+            color: white !important;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 18px;
+            color: white !important;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.8);
+            transform: translateY(-3px);
+            color: white !important;
+        }
+
+        /* Contract Box في قسم About */
+        .contract-container {
+            background: rgba(139, 92, 246, 0.12);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .contract-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.25);
+        }
+
+        .contract-address {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 12px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Stats */
+        .stat-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            margin-bottom: 20px;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px;
+            text-align: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 60px;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Story section */
+        .story-box {
+            background: rgba(139, 92, 246, 0.12);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            line-height: 1.8;
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.98);
+            border-top: 2px solid rgba(139, 92, 246, 0.2);
+            padding: 80px 20px 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Grid layouts */
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .h-20 {
+            height: 80px;
+        }
+
+        .space-x-4 > * + * {
+            margin-left: 1rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-10 { margin-bottom: 2.5rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-10 { margin-top: 2.5rem; }
+        .mt-16 { margin-top: 4rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .my-10 { margin-top: 2.5rem; margin-bottom: 2.5rem; }
+
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-purple-300 { color: #d8b4fe; }
+        .text-purple-400 { color: #a78bfa; }
+        .text-pink-400 { color: #f472b6; }
+        .text-blue-400 { color: #60a5fa; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5563; }
+
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+
+        .font-bold { font-weight: 700; }
+        .font-black { font-weight: 900; }
+
+        .leading-relaxed { line-height: 1.625; }
+        .leading-tight { line-height: 1.25; }
+
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-md { max-width: 28rem; }
+
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .px-12 { padding-left: 3rem; padding-right: 3rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+
+        .rounded-2xl { border-radius: 1rem; }
+
+        /* Grid for sections */
+        .grid {
+            display: grid;
+        }
+
+        .sm-grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .sm-col-span-2 {
+            grid-column: span 2;
+        }
+
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+
+        /* Responsive Design محسّن */
+        @media (min-width: 640px) {
+            .sm-flex-row { flex-direction: row; }
+            .sm-w-auto { width: auto; }
+            .sm-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .lg-flex { display: flex !important; }
+            .lg-hidden { display: none !important; }
+            .lg-grid-cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+        }
+
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 42px;
+            }
+            section {
+                padding: 80px 20px;
+            }
+            .info-card {
+                padding: 25px;
+            }
+            .stat-box {
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* إصلاح الهيدر للهواتف */
+            .navbar {
+                padding: 0 15px;
+            }
+            .desktop-nav {
+                display: none !important;
+            }
+            .mobile-nav-toggle {
+                display: flex !important;
+            }
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 50px;
+            }
+            section {
+                padding: 70px 15px;
+            }
+            .stat-number {
+                font-size: 42px;
+            }
+            .info-card {
+                padding: 25px 20px;
+                margin-bottom: 20px;
+            }
+            .story-box {
+                padding: 30px 20px;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 14px 30px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
+            }
+            .contract-container {
+                padding: 30px 20px;
+                margin: 30px auto;
+            }
+            .hamburger-menu {
+                display: flex;
+            }
+            .mobile-menu {
+                max-width: 280px;
+            }
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+            .contract-top-address {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+            .stat-number {
+                font-size: 38px;
+            }
+            .contract-address {
+                font-size: 14px;
+                padding: 15px;
+            }
+            .story-box {
+                padding: 25px 15px;
+            }
+            .logo-text {
+                font-size: 24px;
+            }
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo with link -->
+                <div class="flex items-center">
+                    <a href="https://idamn.fun" class="logo-link" target="_blank">
+                        <span class="logo-text">Damncoin</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu - ظاهر فقط في شاشات كبيرة -->
+                <div class="desktop-nav lg-flex items-center space-x-4 hidden">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#story" class="nav-link">Story</a>
+                    <a href="#tokenomics" class="nav-link">Tokenomics</a>
+                    <a href="#community" class="nav-link">Community</a>
+                    <a href="#buy" class="btn-primary ml-4">Buy Now</a>
+                </div>
+                
+                <!-- Hamburger Menu Button - ظاهر فقط في الهواتف -->
+                <div class="mobile-nav-toggle lg-hidden">
+                    <div class="hamburger-menu" id="hamburgerMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="px-6">
+            <div class="flex justify-between items-center mb-12 pt-8 px-4">
+                <a href="https://idamn.fun" class="logo-link" target="_blank">
+                    <span class="logo-text text-2xl">Damncoin</span>
+                </a>
+                <div class="hamburger-menu active" id="closeMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="mobile-menu-links">
+                <a href="#about" class="mobile-link">About</a>
+                <a href="#story" class="mobile-link">Story</a>
+                <a href="#tokenomics" class="mobile-link">Tokenomics</a>
+                <a href="#community" class="mobile-link">Community</a>
+                <a href="#buy" class="mobile-link">How to Buy</a>
+                <div class="px-4 pt-8 pb-6">
+                    <a href="#buy" class="btn-primary block text-center w-full py-4">Buy $DMAN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-gradient"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">DAAAAAAMN!</h1>
+            <p class="hero-subtitle">Welcome to Damncoin</p>
+            <p class="hero-description">The voice of every crypto trader waiting for alt season</p>
+            <div class="hero-buttons">
+                <a href="#buy" class="btn-primary">Buy $DMAN</a>
+                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-secondary">Join Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Address Top Section -->
+    <div class="contract-top-section">
+        <div class="contract-top-container">
+            <h3 class="contract-top-title">Contract Address</h3>
+            <div class="contract-top-box">
+                <div class="contract-top-address">
+                    <code id="contractTopAddress">YOUR_CONTRACT_ADDRESS_HERE</code>
+                </div>
+                <button onclick="copyTopAddress()" class="copy-btn">Copy Address</button>
+            </div>
+            <p class="text-gray-400">Always verify the contract address before buying</p>
+        </div>
+    </div>
+
+    <!-- About Section - تم إصلاحه بالكامل -->
+    <section id="about">
+        <div class="about-container">
+            <h2 class="section-title">About Damncoin</h2>
+            <div class="about-grid">
+                <!-- Wojak Image First -->
+                <div class="wojak-image-container">
+                    <img src="wojak.png" alt="Wojak" class="wojak-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/8b5cf6/ffffff?text=Wojak+Image';">
+                </div>
+                
+                <!-- Info Cards -->
+                <div class="about-cards">
+                    <div class="info-card">
+                        <h3 class="text-2xl font-bold mb-4 text-purple-400">$DMAN Token</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Damncoin is the ultimate meme coin for crypto traders who are still waiting for alt season. Born from frustration, fueled by hope, and powered by the community.
+                        </p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3 class="text-2xl font-bold mb-4 text-pink-400">100% Community Driven</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Zero developer allocation. The community leads, supports, and controls Damncoin. This is YOUR coin, built by traders, for traders.
+                        </p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3 class="text-2xl font-bold mb-4 text-blue-400">Solana Network</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Launched on pump.fun, built on Solana for lightning-fast transactions and minimal fees.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 100%);">
+        <div class="container">
+            <h2 class="section-title">The Wojak Story</h2>
+            <div class="story-box">
+                <p class="text-lg mb-6 leading-relaxed">
+                    Meet Wojak, an altcoin trader and investor who put everything into crypto. He's been waiting for alt season to make his first million dollars after failing in the previous cycle.
+                </p>
+                <p class="text-lg mb-6 leading-relaxed">
+                    Back then, Wojak lost his money in the Terra Luna and UST collapse at the end of the last bull run. Now, unfortunately, alt season is delayed, the market keeps bleeding, and Wojak's portfolio is down 95%.
+                </p>
+                <p class="text-lg mb-8 leading-relaxed">
+                    He's still waiting for alt season. And all Wojak can say is...
+                </p>
+                <p class="text-4xl sm:text-5xl md:text-6xl font-black text-center text-purple-400 my-10" style="text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);">
+                    DAAAAAAMN!
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Wojak's story mirrors most traders and investors who lost most of their money waiting for alt season. That's why "DAMN" is the motto of this era.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section id="tokenomics">
+        <div class="container">
+            <h2 class="section-title">Tokenomics</h2>
+            <div class="grid sm-grid-cols-2 lg-grid-cols-3 gap-6 mb-12">
+                <div class="stat-box">
+                    <div class="text-5xl mb-4">🪙</div>
+                    <h3 class="text-xl font-bold mb-4 text-purple-400">Total Supply</h3>
+                    <p class="stat-number">1B</p>
+                    <p class="text-gray-400 mt-2">DMAN Tokens</p>
+                </div>
+                <div class="stat-box">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-4 text-pink-400">Dev Allocation</h3>
+                    <p class="stat-number">0%</p>
+                    <p class="text-gray-400 mt-2">Fair Launch</p>
+                </div>
+                <div class="stat-box sm-col-span-2 lg-grid-cols-3">
+                    <div class="text-5xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Network</h3>
+                    <p class="text-3xl font-bold" style="background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        Solana
+                    </p>
+                    <p class="text-gray-400 mt-2">pump.fun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 100%);">
+        <div class="container">
+            <h2 class="section-title">Join The Community</h2>
+            <p class="text-xl text-center text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+                Damncoin is built by the community, for the community. Join thousands of traders who share your pain and are waiting for alt season together.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-primary">
+                    📱 Join Telegram
+                </a>
+                <a href="#buy" class="btn-secondary">
+                    💰 Buy $DMAN
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buy Section -->
+    <section id="buy">
+        <div class="container">
+            <h2 class="section-title">How To Buy</h2>
+            <div class="grid sm-grid-cols-2 lg-grid-cols-3 gap-6 mb-12">
+                <div class="info-card">
+                    <div class="text-5xl font-black text-purple-400 mb-4">1</div>
+                    <h3 class="text-xl font-bold mb-4">Get a Wallet</h3>
+                    <p class="text-gray-300 leading-relaxed">Download Phantom or any Solana-compatible wallet</p>
+                </div>
+                <div class="info-card">
+                    <div class="text-5xl font-black text-pink-400 mb-4">2</div>
+                    <h3 class="text-xl font-bold mb-4">Buy SOL</h3>
+                    <p class="text-gray-300 leading-relaxed">Purchase Solana from an exchange and send to your wallet</p>
+                </div>
+                <div class="info-card sm-col-span-2 lg-grid-cols-3">
+                    <div class="text-5xl font-black text-blue-400 mb-4">3</div>
+                    <h3 class="text-xl font-bold mb-4">Swap for DMAN</h3>
+                    <p class="text-gray-300 leading-relaxed">Use pump.fun to swap SOL for Damncoin</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="https://pump.fun" target="_blank" class="btn-primary py-4 px-12">
+                    Buy on pump.fun 🚀
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="grid sm-grid-cols-2 lg-grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">Damncoin</h3>
+                    <p class="text-gray-400 leading-relaxed">The voice of every trader waiting for alt season</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-purple-400">Quick Links</h4>
+                    <div class="space-y-3">
+                        <a href="#about" class="block text-gray-400 hover:text-green-300 transition">About</a>
+                        <a href="#story" class="block text-gray-400 hover:text-green-300 transition">Story</a>
+                        <a href="#tokenomics" class="block text-gray-400 hover:text-green-300 transition">Tokenomics</a>
+                        <a href="#community" class="block text-gray-400 hover:text-green-300 transition">Community</a>
+                    </div>
+                </div>
+                <div class="sm-col-span-2 lg-grid-cols-3">
+                    <h4 class="text-lg font-bold mb-4 text-purple-400">Connect</h4>
+                    <div class="space-y-3">
+                        <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="block text-gray-400 hover:text-green-300 transition">Telegram</a>
+                        <a href="https://pump.fun" target="_blank" class="block text-gray-400 hover:text-green-300 transition">pump.fun</a>
+                        <a href="https://idamn.fun" target="_blank" class="block text-gray-400 hover:text-green-300 transition">idamn.fun</a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500">© 2025 Damncoin. All rights reserved.</p>
+                <p class="text-gray-600 text-sm mt-2">All rights reserved idamn.fun 2025</p>
+                <p class="text-gray-600 text-sm mt-1">This is a meme coin. Invest at your own risk.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            hamburgerMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        function closeMenu() {
+            hamburgerMenu.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        hamburgerMenu.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileOverlay.addEventListener('click', closeMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Contract Address Copy Functions
+        function copyTopAddress() {
+            const contractAddress = document.getElementById('contractTopAddress');
+            const textArea = document.createElement('textarea');
+            textArea.value = contractAddress.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Show feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.style.background = '#10B981';
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = mobileMenu.contains(event.target);
+            const isClickOnHamburger = hamburgerMenu.contains(event.target);
+            const isClickOnCloseMenu = closeMenuBtn.contains(event.target);
+            const isMenuActive = mobileMenu.classList.contains('active');
+            
+            if (isMenuActive && !isClickInsideMenu && !isClickOnHamburger && !isClickOnCloseMenu) {
+                closeMenu();
+            }
+        });
+
+        // Prevent body scroll when menu is open
+        document.addEventListener('touchmove', function(e) {
+            if (mobileMenu.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Update contract address
+        function updateContractAddress(address) {
+            document.getElementById('contractTopAddress').textContent = address;
+        }
+
+        // Initialize with your contract address
+        // updateContractAddress('YOUR_CONTRACT_ADDRESS_HERE');
+    </script>
+</body>
+</html>
