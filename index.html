@@ -1,1 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damncoin - DMAN | The Alt Season Survivor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* تغيير كلمة DAMNCOIN لـ Damncoin في الأنماط */
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        /* تغيير لون الروابط للون الأخضر الفاتح */
+        a:not(.btn-primary):not(.btn-secondary):not(.copy-btn) {
+            color: #90EE90 !important;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:not(.btn-primary):not(.btn-secondary):not(.copy-btn):hover {
+            color: #76D976 !important;
+        }
+
+        .nav-link, .mobile-link {
+            color: #90EE90 !important;
+        }
+
+        .nav-link:hover, .mobile-link:hover {
+            color: #76D976 !important;
+        }
+
+        footer a {
+            color: #90EE90 !important;
+        }
+
+        footer a:hover {
+            color: #76D976 !important;
+        }
+
+        /* Navigation Styles - إخفاء navbar في الهواتف */
+        .navbar {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-link {
+            position: relative;
+            color: #90EE90 !important;
+            font-weight: 600;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .nav-link:hover {
+            color: #76D976 !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #90EE90, #76D976);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* تحسين همبرجر مينو احترافي */
+        .hamburger-menu {
+            width: 35px;
+            height: 35px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #90EE90;
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            position: absolute;
+        }
+
+        .hamburger-menu span:nth-child(1) {
+            top: 8px;
+            transform-origin: center;
+        }
+
+        .hamburger-menu span:nth-child(2) {
+            top: 16px;
+        }
+
+        .hamburger-menu span:nth-child(3) {
+            top: 24px;
+            transform-origin: center;
+        }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+            top: 16px;
+            background: #ec4899;
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+            top: 16px;
+            background: #ec4899;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 380px;
+            height: 100vh;
+            background: rgba(15, 15, 25, 0.98);
+            backdrop-filter: blur(25px);
+            transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            z-index: 1000;
+            border-left: 2px solid rgba(139, 92, 246, 0.4);
+            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.7);
+            padding-top: 100px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-link {
+            display: block;
+            padding: 20px 32px;
+            color: #90EE90 !important;
+            font-weight: 600;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-link:before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .mobile-link:hover:before {
+            left: 100%;
+        }
+
+        .mobile-link:hover {
+            background: rgba(139, 92, 246, 0.08);
+            color: #76D976 !important;
+            padding-left: 40px;
+        }
+
+        /* Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 8s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.8),
+                         0 0 40px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Cards مع تباعد محسن */
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            padding: 36px;
+            transition: all 0.4s ease;
+            height: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25),
+                        0 0 0 1px rgba(139, 92, 246, 0.1);
+        }
+
+        /* تباعد محسن بين البطاقات */
+        .card-spacing {
+            margin-bottom: 40px;
+        }
+
+        /* تعديل خاص لعرض الصورة */
+        .wojak-placeholder {
+            min-height: 420px;
+            background: rgba(139, 92, 246, 0.05);
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .wojak-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 16px;
+            max-height: 380px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            padding: 18px 44px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            color: white !important;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover:before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.6);
+            color: white !important;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            padding: 16px 44px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 18px;
+            color: white !important;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-secondary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover:before {
+            left: 100%;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.8);
+            transform: translateY(-4px);
+            color: white !important;
+        }
+
+        /* Contract Box - نقل إلى أعلى */
+        .contract-container {
+            background: rgba(139, 92, 246, 0.12);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 24px;
+            padding: 44px;
+            text-align: center;
+            max-width: 900px;
+            margin: 50px auto 60px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .contract-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25);
+            border-color: rgba(139, 92, 246, 0.6);
+        }
+
+        .contract-address {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 24px;
+            border-radius: 16px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0 auto;
+            max-width: 100%;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            color: white;
+            padding: 16px 38px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Stats */
+        .stat-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            padding: 46px 34px;
+            text-align: center;
+            transition: all 0.4s ease;
+            height: 100%;
+            margin-bottom: 30px;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+        }
+
+        .stat-number {
+            font-size: 52px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        /* Sections مع تباعد محسن */
+        section {
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 52px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 80px;
+            line-height: 1.2;
+        }
+
+        /* Story section */
+        .story-box {
+            background: rgba(139, 92, 246, 0.12);
+            border: 2px solid rgba(139, 92,246, 0.4);
+            border-radius: 24px;
+            padding: 56px;
+            line-height: 1.9;
+            text-align: center;
+            margin: 0 auto 50px;
+            max-width: 1000px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.98);
+            border-top: 2px solid rgba(139, 92, 246, 0.2);
+            padding: 100px 20px 50px;
+            text-align: center;
+        }
+
+        /* تحسين التباعد والتوسيط */
+        .centered-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 44px;
+            }
+            
+            section {
+                padding: 100px 20px;
+            }
+
+            .info-card {
+                padding: 32px;
+                margin-bottom: 25px;
+            }
+
+            .stat-box {
+                padding: 40px 28px;
+                margin-bottom: 25px;
+            }
+            
+            .story-box {
+                padding: 44px;
+                margin-bottom: 40px;
+            }
+            
+            .wojak-placeholder {
+                min-height: 380px;
+            }
+            
+            .wojak-placeholder img {
+                max-height: 340px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* إخفاء الـ navbar وإظهار الهمبرجر فقط في الهواتف */
+            .desktop-nav {
+                display: none !important;
+            }
+            
+            .mobile-nav-toggle {
+                display: flex !important;
+            }
+            
+            .section-title {
+                font-size: 40px;
+                margin-bottom: 70px;
+            }
+            
+            section {
+                padding: 90px 16px;
+            }
+            
+            .stat-number {
+                font-size: 46px;
+            }
+
+            .info-card {
+                padding: 28px;
+                margin-bottom: 25px;
+            }
+
+            .story-box {
+                padding: 36px;
+                margin-bottom: 40px;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 16px 36px;
+                font-size: 17px;
+            }
+
+            .wojak-placeholder {
+                min-height: 320px;
+                padding: 15px;
+                margin-bottom: 35px;
+            }
+            
+            .wojak-placeholder img {
+                max-height: 290px;
+            }
+
+            .contract-container {
+                padding: 36px;
+                margin: 40px auto 50px;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 60px;
+            }
+
+            .stat-number {
+                font-size: 42px;
+            }
+
+            .contract-address {
+                font-size: 14px;
+                padding: 20px;
+            }
+
+            .story-box {
+                padding: 30px;
+                margin-bottom: 35px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            .mobile-menu {
+                max-width: 100%;
+            }
+            
+            .wojak-placeholder {
+                min-height: 280px;
+            }
+            
+            .wojak-placeholder img {
+                max-height: 250px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-nav-toggle {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full top-0 z-50">
+        <div class="centered-container">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <span class="logo-text">Damncoin</span>
+                </div>
+                
+                <!-- Desktop Menu - مخفي في الهواتف -->
+                <div class="desktop-nav hidden lg:flex items-center space-x-3">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#story" class="nav-link">Story</a>
+                    <a href="#tokenomics" class="nav-link">Tokenomics</a>
+                    <a href="#community" class="nav-link">Community</a>
+                    <a href="#buy" class="btn-primary ml-6">Buy Now</a>
+                </div>
+
+                <!-- Hamburger Menu Button - ظاهر فقط في الهواتف -->
+                <div class="mobile-nav-toggle lg:hidden">
+                    <div class="hamburger-menu" id="hamburgerMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="px-8">
+            <div class="text-center mb-16 pt-8">
+                <span class="logo-text text-3xl">Damncoin</span>
+            </div>
+            <div class="flex flex-col">
+                <a href="#about" class="mobile-link">About</a>
+                <a href="#story" class="mobile-link">Story</a>
+                <a href="#tokenomics" class="mobile-link">Tokenomics</a>
+                <a href="#community" class="mobile-link">Community</a>
+                <a href="#buy" class="mobile-link">How to Buy</a>
+                <div class="px-6 pt-10 pb-6">
+                    <a href="#buy" class="btn-primary block text-center w-full py-5 text-lg">Buy $DMAN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        
+        <div class="relative z-10 centered-container text-center">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black mb-6 sm:mb-8 glow-text leading-tight">
+                DAAAAAAMN!
+            </h1>
+            <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-purple-300">Welcome to Damncoin</p>
+            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-10 sm:mb-16 max-w-4xl mx-auto text-gray-300 px-4">
+                The voice of every crypto trader waiting for alt season
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center px-4">
+                <a href="#buy" class="btn-primary w-full sm:w-auto text-center px-12">Buy $DMAN</a>
+                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-secondary w-full sm:w-auto text-center px-12">Join Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="centered-container">
+            <h2 class="section-title glow-text">About Damncoin</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-14 lg:gap-18 items-center">
+                <!-- Wojak Image -->
+                <div class="wojak-placeholder order-2 lg:order-1 max-w-lg mx-auto">
+                    <img 
+                        src="wojak.png" 
+                        alt="Wojak waiting for alt season" 
+                        class="wojak-image"
+                    >
+                </div>
+
+                <!-- Info Cards -->
+                <div class="space-y-10 lg:space-y-12 order-1 lg:order-2">
+                    <div class="info-card">
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-purple-400">$DMAN Token</h3>
+                        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                            Damncoin is the ultimate meme coin for crypto traders who are still waiting for alt season. 
+                            Born from frustration, fueled by hope, and powered by the community.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-pink-400">100% Community Driven</h3>
+                        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                            Zero developer allocation. The community leads, supports, and controls Damncoin. 
+                            This is YOUR coin, built by traders, for traders.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-blue-400">Solana Network</h3>
+                        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                            Launched on pump.fun, built on Solana for lightning-fast transactions and minimal fees.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Address - تم نقله إلى هنا -->
+            <div class="max-w-5xl mx-auto">
+                <div class="contract-container">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-8 text-center text-purple-400">Contract Address</h3>
+                    <div class="contract-address">
+                        <code id="contractAddress">YOUR_CONTRACT_ADDRESS_HERE</code>
+                    </div>
+                    <div class="text-center">
+                        <button onclick="copyAddress()" class="copy-btn">Copy Address</button>
+                    </div>
+                    <p class="text-center text-sm sm:text-base text-gray-400 mt-8">Always verify the contract address before buying</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 100%);">
+        <div class="centered-container max-w-6xl">
+            <h2 class="section-title glow-text">The Wojak Story</h2>
+            
+            <div class="story-box">
+                <p class="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed">
+                    Meet Wojak, an altcoin trader and investor who put everything into crypto. He's been waiting for alt season 
+                    to make his first million dollars after failing in the previous cycle.
+                </p>
+                
+                <p class="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed">
+                    Back then, Wojak lost his money in the Terra Luna and UST collapse at the end of the last bull run. 
+                    Now, unfortunately, alt season is delayed, the market keeps bleeding, and Wojak's portfolio is down 95%.
+                </p>
+                
+                <p class="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed">
+                    He's still waiting for alt season. And all Wojak can say is...
+                </p>
+                
+                <p class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-center text-purple-400 glow-text my-12">
+                    DAAAAAAMN!
+                </p>
+                
+                <p class="text-base sm:text-lg lg:text-xl leading-relaxed">
+                    Wojak's story mirrors most traders and investors who lost most of their money waiting for alt season. 
+                    That's why "DAMN" is the motto of this era.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section id="tokenomics">
+        <div class="centered-container">
+            <h2 class="section-title glow-text">Tokenomics</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-14 mb-14 sm:mb-18">
+                <div class="stat-box">
+                    <div class="text-5xl sm:text-6xl mb-6">🪙</div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-purple-400">Total Supply</h3>
+                    <p class="stat-number">1B</p>
+                    <p class="text-base sm:text-lg text-gray-400 mt-4">DMAN Tokens</p>
+                </div>
+
+                <div class="stat-box">
+                    <div class="text-5xl sm:text-6xl mb-6">🎯</div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-pink-400">Dev Allocation</h3>
+                    <p class="stat-number">0%</p>
+                    <p class="text-base sm:text-lg text-gray-400 mt-4">Fair Launch</p>
+                </div>
+
+                <div class="stat-box sm:col-span-2 lg:col-span-1">
+                    <div class="text-5xl sm:text-6xl mb-6">🌐</div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-blue-400">Network</h3>
+                    <p class="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Solana</p>
+                    <p class="text-base sm:text-lg text-gray-400 mt-4">pump.fun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 100%);">
+        <div class="centered-container max-w-6xl">
+            <h2 class="section-title glow-text">Join The Community</h2>
+            
+            <p class="text-lg sm:text-xl lg:text-2xl text-center text-gray-300 mb-14 sm:mb-18 leading-relaxed max-w-3xl mx-auto">
+                Damncoin is built by the community, for the community. Join thousands of traders who share 
+                your pain and are waiting for alt season together.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 justify-center max-w-2xl mx-auto">
+                <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="btn-primary text-center py-6 px-14 w-full sm:w-auto text-lg">
+                    📱 Join Telegram
+                </a>
+                <a href="#buy" class="btn-secondary text-center py-6 px-14 w-full sm:w-auto text-lg">
+                    💰 Buy $DMAN
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buy Section -->
+    <section id="buy">
+        <div class="centered-container">
+            <h2 class="section-title glow-text">How To Buy</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-14 mb-14 sm:mb-18">
+                <div class="info-card">
+                    <div class="text-5xl sm:text-6xl font-black text-purple-400 mb-6">1</div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Get a Wallet</h3>
+                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">Download Phantom or any Solana-compatible wallet</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="text-5xl sm:text-6xl font-black text-pink-400 mb-6">2</div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Buy SOL</h3>
+                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">Purchase Solana from an exchange and send to your wallet</p>
+                </div>
+
+                <div class="info-card sm:col-span-2 lg:col-span-1">
+                    <div class="text-5xl sm:text-6xl font-black text-blue-400 mb-6">3</div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Swap for DMAN</h3>
+                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">Use pump.fun to swap SOL for Damncoin</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="https://pump.fun" target="_blank" class="btn-primary py-6 px-18 text-lg">
+                    Buy on pump.fun 🚀
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="centered-container">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-14 mb-14">
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-purple-400 mb-6">Damncoin</h3>
+                    <p class="text-base sm:text-lg text-gray-400 leading-relaxed">The voice of every trader waiting for alt season</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg sm:text-xl font-bold mb-6 text-purple-400">Quick Links</h4>
+                    <div class="space-y-5">
+                        <a href="#about" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">About</a>
+                        <a href="#story" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Story</a>
+                        <a href="#tokenomics" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Tokenomics</a>
+                        <a href="#community" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Community</a>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h4 class="text-lg sm:text-xl font-bold mb-6 text-purple-400">Connect</h4>
+                    <div class="space-y-5">
+                        <a href="https://t.me/ADDYOURTGHERE" target="_blank" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">Telegram</a>
+                        <a href="https://pump.fun" target="_blank" class="block text-base sm:text-lg text-gray-400 hover:text-green-300 transition">pump.fun</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-10 border-t border-gray-800 text-center">
+                <p class="text-gray-500 text-sm sm:text-base">© 2025 Damncoin. All rights reserved.</p>
+                <p class="text-gray-600 text-xs sm:text-sm mt-4">All rights reserved idamn.fun 2025</p>
+                <p class="text-gray-600 text-xs sm:text-sm mt-2">This is a meme coin. Invest at your own risk.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            hamburgerMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburgerMenu.addEventListener('click', toggleMenu);
+        mobileOverlay.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Contract Address Copy Function
+        function copyAddress() {
+            const contractAddress = document.getElementById('contractAddress');
+            const textArea = document.createElement('textarea');
+            textArea.value = contractAddress.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Show feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.style.background = '#10B981';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = mobileMenu.contains(event.target);
+            const isClickOnHamburger = hamburgerMenu.contains(event.target);
+            const isMenuActive = mobileMenu.classList.contains('active');
+            
+            if (isMenuActive && !isClickInsideMenu && !isClickOnHamburger) {
+                toggleMenu();
+            }
+        });
+        
+        // Image fallback in case wojak.png is not found
+        document.addEventListener('DOMContentLoaded', function() {
+            const wojakImage = document.querySelector('.wojak-image');
+            if (wojakImage) {
+                wojakImage.onerror = function() {
+                    console.log('Image wojak.png not found. Please ensure the file is in the same directory as the HTML file.');
+                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWExYTJhIi8+PHRleHQgeD0iMzAwIiB5PSIzMDAiIGZvbnQtZmFtaWx5PSJQb3BwaW5zIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOGI1Y2Y2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Xb2phayBJbWFnZTxicj48dHNwYW4gZm9udC1zaXplPSIxNiI+KHBsZWFzZSBhZGQgIndvamFrLnBuZyIgZmlsZSk8L3RzcGFuPjwvdGV4dD48L3N2Zz4=';
+                    this.alt = 'Image not found - please add wojak.png file';
+                };
+            }
+        });
+    </script>
+</body>
+</html>
